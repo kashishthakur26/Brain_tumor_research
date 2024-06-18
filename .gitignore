@@ -162,3 +162,5 @@ cython_debug/
 #.idea/
 /Training
 /Testing
+/history.pkl
+/Brain-Tumor-Classification.h5
