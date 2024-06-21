@@ -3,6 +3,7 @@ from tqdm import tqdm
 import cv2
 import os
 import imutils
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 
 
@@ -28,33 +29,15 @@ def crop_img(img):
 	
 	return new_img
 	
-if __name__ == "__main__":
-	training = "dataset/Training"
-	testing = "dataset/Testing"
-	training_dir = os.listdir(training)
-	testing_dir = os.listdir(testing)
-	IMG_SIZE = 256
 
-	for dir in training_dir:
-		save_path = 'cleaned/Training/'+ dir
-		path = os.path.join(training,dir)
-		image_dir = os.listdir(path)
-		for img in image_dir:
-			image = cv2.imread(os.path.join(path,img))
-			new_img = crop_img(image)
-			new_img = cv2.resize(new_img,(IMG_SIZE,IMG_SIZE))
-			if not os.path.exists(save_path):
-				os.makedirs(save_path)
-			cv2.imwrite(save_path+'/'+img, new_img)
-	
-	for dir in testing_dir:
-		save_path = 'cleaned/Testing/'+ dir
-		path = os.path.join(testing,dir)
-		image_dir = os.listdir(path)
-		for img in image_dir:
-			image = cv2.imread(os.path.join(path,img))
-			new_img = crop_img(image)
-			new_img = cv2.resize(new_img,(IMG_SIZE,IMG_SIZE))
-			if not os.path.exists(save_path):
-				os.makedirs(save_path)
-			cv2.imwrite(save_path+'/'+img, new_img)
+def dataaug(x_train):
+	datagen  = ImageDataGenerator(
+		rotation_range = 10,
+		width_shift_range = 0.05,
+		height_shift_range = 0.05,
+		horizontal_flip = True
+
+	)
+
+	x_train = datagen.fit(x_train)
+	return x_train

@@ -164,3 +164,6 @@ cython_debug/
 /Testing
 /history.pkl
 /Brain-Tumor-Classification.h5
+/Data
+/brain_tumor_data.pth
+/Model
