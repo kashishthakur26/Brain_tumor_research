@@ -1,0 +1,1 @@
+new_img = cv2.resize(new_img,(IMG_SIZE,IMG_SIZE))
