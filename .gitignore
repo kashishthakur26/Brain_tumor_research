@@ -167,4 +167,6 @@ cython_debug/
 /Data
 /brain_tumor_data.pth
 /Model
+/model after training
 /cleaned
+/model_39
